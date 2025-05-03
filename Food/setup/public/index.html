@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Ordering System - Setup</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="setup-header">
+      <div class="setup-logo">
+        <span>Food</span><span>Order</span>
+      </div>
+      <p class="setup-subtitle">Installation Wizard</p>
+    </div>
+
+    <div class="setup-card">
+      <div class="setup-card-header">
+        <span id="step-title">Welcome to Food Ordering System</span>
+      </div>
+      <div class="setup-card-body">
+        <!-- Step Navigation -->
+        <div class="setup-steps">
+          <div class="setup-step active" data-step="welcome">
+            <div class="setup-step-number">1</div>
+            <div class="setup-step-label">Welcome</div>
+          </div>
+          <div class="setup-step" data-step="requirements">
+            <div class="setup-step-number">2</div>
+            <div class="setup-step-label">Requirements</div>
+          </div>
+          <div class="setup-step" data-step="database">
+            <div class="setup-step-number">3</div>
+            <div class="setup-step-label">Database</div>
+          </div>
+          <div class="setup-step" data-step="admin">
+            <div class="setup-step-number">4</div>
+            <div class="setup-step-label">Admin</div>
+          </div>
+          <div class="setup-step" data-step="site_config">
+            <div class="setup-step-number">5</div>
+            <div class="setup-step-label">Configuration</div>
+          </div>
+          <div class="setup-step" data-step="install">
+            <div class="setup-step-number">6</div>
+            <div class="setup-step-label">Install</div>
+          </div>
+        </div>
+
+        <!-- Step Content -->
+        <div id="step-content">
+          <!-- Welcome Step -->
+          <div class="step-pane active" id="welcome-step">
+            <h2>Welcome to the Food Ordering System</h2>
+            <p>This wizard will guide you through the installation process. Before proceeding, please make sure you have:</p>
+            <ul>
+              <li>MongoDB server running</li>
+              <li>Node.js 14.0.0 or higher</li>
+              <li>NPM 6.0.0 or higher</li>
+              <li>Write permissions to the application directory</li>
+            </ul>
+            <p>Click "Next" to check if your system meets the requirements.</p>
+          </div>
+
+          <!-- Requirements Step -->
+          <div class="step-pane" id="requirements-step">
+            <h2>System Requirements</h2>
+            <p>Checking if your system meets the requirements...</p>
+            
+            <div class="spinner" id="requirements-spinner"></div>
+            
+            <div id="requirements-results" class="hidden">
+              <h3>Software Requirements</h3>
+              <ul class="requirements-list" id="software-requirements">
+                <!-- Will be populated by JavaScript -->
+              </ul>
+              
+              <h3 class="mt-4">Directory Permissions</h3>
+              <ul class="requirements-list" id="directory-permissions">
+                <!-- Will be populated by JavaScript -->
+              </ul>
+              
+              <div id="requirements-message" class="mt-4"></div>
+            </div>
+          </div>
+
+          <!-- Database Step -->
+          <div class="step-pane" id="database-step">
+            <h2>Database Configuration</h2>
+            <p>Enter your MongoDB connection details:</p>
+            
+            <form id="database-form">
+              <div class="form-group">
+                <label class="form-label" for="db-host">Host</label>
+                <input type="text" id="db-host" class="form-control" value="localhost" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="db-port">Port</label>
+                <input type="text" id="db-port" class="form-control" value="27017" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="db-name">Database Name</label>
+                <input type="text" id="db-name" class="form-control" value="food_ordering" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="db-user">Username (optional)</label>
+                <input type="text" id="db-user" class="form-control">
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="db-password">Password (optional)</label>
+                <input type="password" id="db-password" class="form-control">
+              </div>
+              
+              <div id="db-connection-message"></div>
+            </form>
+          </div>
+
+          <!-- Admin Step -->
+          <div class="step-pane" id="admin-step">
+            <h2>Admin Account</h2>
+            <p>Create your admin account:</p>
+            
+            <form id="admin-form">
+              <div class="form-group">
+                <label class="form-label" for="admin-name">Name</label>
+                <input type="text" id="admin-name" class="form-control" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="admin-email">Email</label>
+                <input type="email" id="admin-email" class="form-control" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="admin-password">Password</label>
+                <input type="password" id="admin-password" class="form-control" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="admin-confirm-password">Confirm Password</label>
+                <input type="password" id="admin-confirm-password" class="form-control" required>
+              </div>
+              
+              <div id="admin-message"></div>
+            </form>
+          </div>
+
+          <!-- Site Configuration Step -->
+          <div class="step-pane" id="site_config-step">
+            <h2>Site Configuration</h2>
+            <p>Configure your site settings:</p>
+            
+            <form id="site-config-form">
+              <div class="form-group">
+                <label class="form-label" for="site-name">Site Name</label>
+                <input type="text" id="site-name" class="form-control" value="Food Ordering System" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="site-url">Site URL</label>
+                <input type="url" id="site-url" class="form-control" placeholder="https://yourdomain.com" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="site-currency">Currency</label>
+                <select id="site-currency" class="form-control">
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="GBP">GBP (£)</option>
+                  <option value="INR">INR (₹)</option>
+                  <option value="JPY">JPY (¥)</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="site-tax-rate">Tax Rate (%)</label>
+                <input type="number" id="site-tax-rate" class="form-control" value="10" min="0" max="100" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="site-delivery-fee">Delivery Fee</label>
+                <input type="number" id="site-delivery-fee" class="form-control" value="5" min="0" step="0.01" required>
+              </div>
+              
+              <div id="site-config-message"></div>
+            </form>
+          </div>
+
+          <!-- Install Step -->
+          <div class="step-pane" id="install-step">
+            <h2>Installation</h2>
+            <p>Ready to install Food Ordering System with the following configuration:</p>
+            
+            <div id="install-summary">
+              <!-- Will be populated by JavaScript -->
+            </div>
+            
+            <div class="spinner hidden" id="install-spinner"></div>
+            
+            <div id="install-message"></div>
+          </div>
+
+          <!-- Complete Step -->
+          <div class="step-pane" id="complete-step">
+            <div class="text-center">
+              <svg class="icon text-success mx-auto mb-4" style="width: 64px; height: 64px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              
+              <h2>Installation Complete!</h2>
+              <p>Food Ordering System has been successfully installed.</p>
+              
+              <div class="mt-4">
+                <a href="../" class="btn btn-primary">Go to Homepage</a>
+                <a href="../admin" class="btn btn-secondary ml-2">Go to Admin Panel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step Navigation Buttons -->
+        <div class="setup-actions">
+          <button id="prev-btn" class="btn btn-secondary" disabled>Previous</button>
+          <button id="next-btn" class="btn btn-primary">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
